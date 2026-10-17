@@ -1,0 +1,12 @@
+# Keep the image corpus and large datasets outside regular Git history.
+Humans/** filter=lfs diff=lfs merge=lfs -text
+/*.csv filter=lfs diff=lfs merge=lfs -text
+/*.jsonl filter=lfs diff=lfs merge=lfs -text
+/*.npy filter=lfs diff=lfs merge=lfs -text
+Source/text_generation_controlled_train.jsonl filter=lfs diff=lfs merge=lfs -text
+*.py text eol=lf
+*.js text eol=lf
+*.css text eol=lf
+*.html text eol=lf
+*.md text eol=lf
+*.ipynb text eol=lf

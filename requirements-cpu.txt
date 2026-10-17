@@ -1,0 +1,31 @@
+# Physiognomy - Minimal CPU Inference Requirements Lock
+# Pinned for reproducible container/offline CPU execution (no GPU required)
+
+# Core Numerical Computing
+numpy>=1.26.0,<3.0.0
+pandas>=2.0.0,<4.0.0
+scikit-learn>=1.4.0,<2.0.0
+scipy>=1.11.0,<2.0.0
+
+# PyTorch CPU & Vision
+torch>=2.0.0,<3.0.0
+torchvision>=0.15.0,<1.0.0
+
+# NLP & Model Execution
+transformers>=4.40.0,<6.0.0
+sentencepiece>=0.2.0
+accelerate>=0.30.0
+
+# Face Geometry & Feature Extraction
+insightface>=0.7.3,<=2.1
+facexlib>=0.3.0
+onnxruntime>=1.16.0,<2.0.0
+opencv-python-headless>=4.8.0,<6.0.0
+pillow>=10.0.0,<13.0.0
+
+# Gradio Web Interface
+gradio==6.29.1
+
+# Networking & Utilities (compatible versions)
+requests>=2.31.0,<3.0.0
+urllib3>=1.26.0,<3.0.0

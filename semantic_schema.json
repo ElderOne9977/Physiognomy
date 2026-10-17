@@ -1,0 +1,194 @@
+{
+  "version": 1,
+  "traits": [
+    {
+      "name": "warm",
+      "category": "personality"
+    },
+    {
+      "name": "calm",
+      "category": "personality"
+    },
+    {
+      "name": "confident",
+      "category": "personality"
+    },
+    {
+      "name": "perceptive",
+      "category": "personality"
+    },
+    {
+      "name": "resilient",
+      "category": "personality"
+    },
+    {
+      "name": "reliable",
+      "category": "personality"
+    },
+    {
+      "name": "practical",
+      "category": "personality"
+    },
+    {
+      "name": "empathetic",
+      "category": "personality"
+    },
+    {
+      "name": "adaptable",
+      "category": "personality"
+    },
+    {
+      "name": "disciplined",
+      "category": "personality"
+    },
+    {
+      "name": "curious",
+      "category": "personality"
+    },
+    {
+      "name": "focused",
+      "category": "personality"
+    },
+    {
+      "name": "grounded",
+      "category": "personality"
+    },
+    {
+      "name": "dependable",
+      "category": "personality"
+    },
+    {
+      "name": "sociable",
+      "category": "personality"
+    },
+    {
+      "name": "thoughtful",
+      "category": "personality"
+    },
+    {
+      "name": "poised",
+      "category": "personality"
+    },
+    {
+      "name": "observant",
+      "category": "personality"
+    },
+    {
+      "name": "collaborative",
+      "category": "career"
+    },
+    {
+      "name": "leadership",
+      "category": "career"
+    },
+    {
+      "name": "creative",
+      "category": "career"
+    },
+    {
+      "name": "client_facing",
+      "category": "career"
+    },
+    {
+      "name": "research",
+      "category": "career"
+    },
+    {
+      "name": "learning_rich",
+      "category": "career"
+    },
+    {
+      "name": "public_roles",
+      "category": "career"
+    },
+    {
+      "name": "responsibility_driven",
+      "category": "career"
+    },
+    {
+      "name": "results_oriented",
+      "category": "career"
+    },
+    {
+      "name": "loyal",
+      "category": "relationships"
+    },
+    {
+      "name": "patient",
+      "category": "relationships"
+    },
+    {
+      "name": "trust_based",
+      "category": "relationships"
+    },
+    {
+      "name": "stable_rel",
+      "category": "relationships"
+    },
+    {
+      "name": "intellectual_rel",
+      "category": "relationships"
+    },
+    {
+      "name": "steady_growth",
+      "category": "future_destiny"
+    },
+    {
+      "name": "favorable",
+      "category": "future_destiny"
+    },
+    {
+      "name": "opportunities",
+      "category": "future_destiny"
+    },
+    {
+      "name": "breakthroughs",
+      "category": "future_destiny"
+    },
+    {
+      "name": "consistent",
+      "category": "future_destiny"
+    },
+    {
+      "name": "influence",
+      "category": "future_destiny"
+    },
+    {
+      "name": "social_connections",
+      "category": "future_destiny"
+    },
+    {
+      "name": "meaningful",
+      "category": "future_destiny"
+    },
+    {
+      "name": "financial_stability",
+      "category": "wealth"
+    },
+    {
+      "name": "generous_spending",
+      "category": "wealth"
+    },
+    {
+      "name": "mindful_spending",
+      "category": "wealth"
+    },
+    {
+      "name": "saving",
+      "category": "wealth"
+    },
+    {
+      "name": "conservative",
+      "category": "wealth"
+    }
+  ],
+  "thresholds": {
+    "MIN_POS": 300,
+    "MAX_POS": 5500,
+    "MIN_PREVALENCE": 0.03,
+    "MAX_PREVALENCE": 0.92
+  },
+  "total_candidates": 47,
+  "selected_count": 45,
+  "excluded_count": 2
+}
