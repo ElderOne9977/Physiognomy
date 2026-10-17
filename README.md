@@ -1,39 +1,39 @@
 # Physiognomy
 
-Một dự án thử nghiệm về hình học khuôn mặt và sinh văn bản từ dữ liệu có cấu trúc. Repository gồm bộ ảnh, các bảng đặc trưng, notebook xử lý dữ liệu và giao diện Gradio để đọc báo cáo.
+An experimental project exploring facial geometry and text generation from structured data. The repository includes an image dataset, feature tables, a data-processing notebook, and a Gradio interface for reading reports.
 
-Dự án kết hợp các phép đo từ ảnh với nhãn văn bản do một dịch vụ bên ngoài cung cấp. Các nhãn về tính cách, nghề nghiệp, quan hệ, tương lai và tài chính chưa được kiểm chứng là thông tin đúng về một người. Không dùng các diễn giải này để đánh giá con người hoặc đưa ra quyết định quan trọng.
+The project pairs measurements extracted from images with text labels supplied by an external service. Labels about personality, careers, relationships, future outcomes, and wealth have not been independently validated as facts about a person. Do not use these interpretations to assess people or make consequential decisions.
 
-## Cách hoạt động
+## How it works
 
 ```text
-Ảnh khuôn mặt → Trích xuất hình học → Bảng đặc trưng CSV
-                                             ↓
-                                  Biểu diễn semantic → Văn bản
-                                                           ↓
-                                              Báo cáo trên Gradio
+Face image → Geometry extraction → Feature CSV
+                                       ↓
+                           Semantic representation → Text
+                                                       ↓
+                                              Gradio report
 ```
 
-- **Dữ liệu hình học:** các điểm mốc giúp biểu diễn khoảng cách, góc và tỷ lệ trên khuôn mặt.
-- **Chuẩn bị dataset:** mã xử lý ghép bảng đặc trưng với nhãn của dịch vụ theo tên ảnh đã chuẩn hóa.
-- **Sinh văn bản:** các thử nghiệm dùng template hoặc FLAN-T5 để tạo văn bản theo năm nhóm nội dung.
-- **Giao diện đọc báo cáo:** năm phần có mục lục, nút sao chép và tệp CSV/JSON để tải xuống.
-- **Sáng và tối:** công tắc trong góc phải của header ghi nhớ lựa chọn trên trình duyệt.
+- **Geometry data:** facial landmarks provide measurements of distances, angles, and proportions.
+- **Dataset preparation:** processing scripts join feature tables with provider labels using normalized image filenames.
+- **Text generation:** experiments use templates or FLAN-T5 to produce text across five categories.
+- **Report viewer:** five sections have a contents menu, copy buttons, and downloadable CSV/JSON files.
+- **Light and dark mode:** a switch in the top-right corner of the header remembers your browser preference.
 
-Hình khuôn mặt có điểm mốc trên giao diện là sơ đồ minh họa. Nó không phải kết quả trích xuất từ ảnh bạn vừa tải lên.
+The landmark illustration in the interface is a schematic. It does not show measurements extracted from your uploaded image.
 
-## Bạn cần gì?
+## What you need
 
-- Git và Git LFS để tải mã nguồn cùng dataset.
-- Môi trường Python có các phụ thuộc phù hợp nếu muốn mở notebook hoặc thử giao diện.
-- Vài GB dung lượng trống cho ảnh và các bảng dữ liệu. Riêng thư mục `Humans/` có dung lượng khoảng 2,06 GB.
-- Jupyter hoặc VS Code có hỗ trợ notebook để đọc tệp `.ipynb`.
+- Git and Git LFS to download the source and datasets.
+- A Python environment with the appropriate dependencies to open the notebook or try the interface.
+- Several GB of free disk space for images and tables. The `Humans/` directory alone is about 2.06 GB.
+- Jupyter or VS Code with notebook support to read the `.ipynb` file.
 
-Các lệnh bên dưới dùng PowerShell và chạy từ thư mục gốc của repository. Truy cập Internet cần thiết khi clone, tải dữ liệu LFS hoặc cài thư viện.
+The commands below use PowerShell and run from the repository root. Internet access is needed to clone the project, download LFS data, and install dependencies.
 
-## Bắt đầu
+## Setup
 
-### 1. Tải dự án và dataset
+### 1. Clone the project and datasets
 
 ```powershell
 git lfs install
@@ -42,7 +42,7 @@ cd Physiognomy
 git lfs pull
 ```
 
-Git LFS lưu ảnh và các dataset lớn ngoài lịch sử Git thông thường. Nếu chỉ muốn đọc mã nguồn trước, có thể clone mà chưa tải dữ liệu:
+Git LFS stores images and large datasets outside regular Git history. To browse the source before downloading the data, you can skip the initial LFS download:
 
 ```powershell
 $env:GIT_LFS_SKIP_SMUDGE='1'
@@ -50,42 +50,42 @@ git clone https://github.com/ElderOne9977/Physiognomy.git
 Remove-Item Env:GIT_LFS_SKIP_SMUDGE
 ```
 
-Khi cần dataset, vào thư mục `Physiognomy` rồi chạy `git lfs pull`. Các tệp trỏ nhỏ sẽ được thay bằng dữ liệu thật; việc tải phụ thuộc dung lượng và băng thông LFS khả dụng của tài khoản GitHub.
+When you need the datasets, enter the `Physiognomy` directory and run `git lfs pull`. This replaces small pointer files with the actual data. Downloads depend on the GitHub account's available LFS storage and bandwidth.
 
-### 2. Mở notebook và tìm hiểu dữ liệu
+### 2. Open the notebook and explore the data
 
-Bắt đầu với [Physiognomy_VSCode_Colab_Features.ipynb](Physiognomy_VSCode_Colab_Features.ipynb). Notebook giữ các cell và output hiện có để tiện theo dõi quá trình xử lý. Một số đường dẫn gắn với môi trường gốc, nên hãy đọc từng cell và chỉnh đường dẫn trước khi chạy.
+Start with [Physiognomy_VSCode_Colab_Features.ipynb](Physiognomy_VSCode_Colab_Features.ipynb). The notebook retains its existing cells and outputs so you can follow the processing steps. Some paths refer to the original environment; review each cell and adjust those paths before running it.
 
-| Dữ liệu | Nội dung |
+| Dataset | Contents |
 | --- | --- |
-| `Humans/` | 7.472 ảnh đầu vào. |
-| `faces_full_features.csv` | Bảng đặc trưng ban đầu. |
-| `faces_full_features_clean.csv` | Bảng đã làm sạch, 6.988 dòng × 452 cột. |
-| `labels_enriched.jsonl` | 7.467 bản ghi nhãn từ dịch vụ bên ngoài. |
-| `training_dataset.csv`, `merged_full_features.csv` | Hai bản dữ liệu ghép giữa đặc trưng và nhãn. |
-| `semantic_schema.json`, `semantic_labels.csv` | Danh sách và bảng mã hóa 45 nhãn semantic. |
-| `semantic_training_dataset.csv` | 6.983 dòng ghép được giữa đặc trưng và nhãn semantic. |
-| `training_*.jsonl`, `text_generation_*.jsonl` | Dataset văn bản ở các định dạng thử nghiệm. |
-| `Source/text_generation_controlled_train.jsonl` | Dataset khái niệm có cấu trúc và văn bản của thử nghiệm controlled. |
-| `oof_semantic_*` | Dự đoán ngoài fold và metadata đã lưu. |
+| `Humans/` | 7,472 input images. |
+| `faces_full_features.csv` | Original feature table. |
+| `faces_full_features_clean.csv` | Cleaned table with 6,988 rows and 452 columns. |
+| `labels_enriched.jsonl` | 7,467 provider-label records. |
+| `training_dataset.csv`, `merged_full_features.csv` | Two joined versions of the features and labels. |
+| `semantic_schema.json`, `semantic_labels.csv` | Definitions and encoded labels for 45 semantic concepts. |
+| `semantic_training_dataset.csv` | 6,983 matched feature and semantic-label rows. |
+| `training_*.jsonl`, `text_generation_*.jsonl` | Text datasets in the formats used by earlier experiments. |
+| `Source/text_generation_controlled_train.jsonl` | Structured-concept and text dataset for the controlled-generation experiment. |
+| `oof_semantic_*` | Saved out-of-fold predictions and metadata. |
 
-Số dòng khác nhau vì không phải ảnh nào cũng có đủ cả đặc trưng và nhãn ghép tương ứng. Các schema cũng phục vụ từng bước riêng: bảng clean có 452 cột, còn mô hình semantic dùng 95 đặc trưng gốc và 21 cột đánh dấu thiếu dữ liệu, theo thứ tự đã lưu.
+Row counts differ because not every image has both extracted features and matching labels. Each processing stage also has its own schema: the cleaned table has 452 columns, while the semantic model consumes 95 base features and 21 missing-value indicators in the saved order.
 
-### 3. Chuẩn bị môi trường
+### 3. Prepare the environment
 
-Các tệp phụ thuộc được chia theo mục đích:
+Dependency files serve different parts of the project:
 
-| Tệp | Dùng cho |
+| File | Purpose |
 | --- | --- |
-| `requirements.txt` | Playwright và công cụ phân tích HTML của phần thu thập dữ liệu cũ. Playwright cũng được dùng trong kiểm thử trình duyệt. |
-| `requirements-demo.txt` | Phiên bản Gradio của giao diện. Tệp này không bao gồm toàn bộ phụ thuộc được import bởi mã dự án. |
-| `requirements-cpu.txt` | Các thư viện dữ liệu, ảnh và mô hình cho môi trường CPU. |
+| `requirements.txt` | Playwright and HTML parsing tools from the earlier data-collection workflow. Playwright is also used for browser tests. |
+| `requirements-demo.txt` | The Gradio version used by the interface. This file does not include every dependency imported by the project. |
+| `requirements-cpu.txt` | Data, image-processing, and model libraries for the CPU environment. |
 
-Tệp CPU dùng khoảng phiên bản, chưa khóa chính xác toàn bộ môi trường. Model weights, cache thư viện và kết quả thí nghiệm cục bộ không nằm trong bản upload. Vì vậy, clone repository chưa cung cấp một bộ suy luận offline hoàn chỉnh; một số script đánh giá cũng cần các artifact được giữ riêng ở máy.
+The CPU requirements use version ranges rather than a complete environment lock. Model weights, library caches, and local experiment outputs are not included in this upload. Cloning the repository therefore does not provide a complete offline inference bundle; some evaluation scripts also require artifacts kept separately on the original machine.
 
-## Xem thử giao diện
+## Preview the interface
 
-Trong môi trường Python đã có các phụ thuộc của dự án, chạy:
+From a Python environment that already has the project's dependencies installed, run:
 
 ```powershell
 $env:GRADIO_ANALYTICS_ENABLED='False'
@@ -94,13 +94,13 @@ $env:PYTHONIOENCODING='utf-8'
 python -u -B Source/experiments/ui_reading_20261014/mock_preview.py
 ```
 
-Mở **http://127.0.0.1:7862/** trong trình duyệt. Tải một ảnh để thử bố cục, thanh tiến trình, mục lục, sao chép và tải tệp. Nhấn **Ctrl+C** trong terminal để dừng; chỉ chạy một preview trên cổng này.
+Open **http://127.0.0.1:7862/** in your browser. Upload an image to try the layout, progress indicator, contents menu, copy buttons, and downloads. Press **Ctrl+C** in the terminal to stop the server. Run only one preview on this port.
 
-Preview dùng **văn bản giả lập**, không nạp mô hình hay thực hiện dự đoán thật. CSV/JSON tải xuống từ preview cũng là dữ liệu mẫu để kiểm tra giao diện.
+The preview returns **mock text** without loading models or performing real predictions. Its downloadable CSV/JSON files are also fixtures for testing the interface.
 
-## Kiểm thử
+## Testing
 
-Để chạy kiểm thử phần hiển thị trong môi trường đã chuẩn bị:
+To run presentation tests in the prepared environment:
 
 ```powershell
 $env:GRADIO_ANALYTICS_ENABLED='False'
@@ -109,56 +109,56 @@ $env:PYTHONIOENCODING='utf-8'
 python -u -B Source/test_demo_reading_view.py
 ```
 
-Kiểm thử trình duyệt cần Playwright và Chromium. Khởi động preview mock ở một terminal, sau đó chạy `python -u -B Source/test_demo_ui_browser.py` ở terminal khác. Bài kiểm tra chỉ dùng ảnh tổng hợp với preview mock; dừng preview sau khi hoàn tất.
+Browser tests require Playwright and Chromium. Start the mock preview in one terminal, then run `python -u -B Source/test_demo_ui_browser.py` in another. The test uses synthetic images with the mock preview only. Stop the preview when testing is complete.
 
-`Source/test_demo_gradio.py` có thêm kiểm tra sự hiện diện của artifact mô hình nên cần các artifact cục bộ. Kết quả kiểm thử mock xác nhận hành vi phần mềm, không xác nhận độ chính xác trên khuôn mặt mới.
+`Source/test_demo_gradio.py` also checks for model artifacts and therefore needs those local files. Mock tests verify software behavior, not accuracy on previously unseen faces.
 
-## Khi gặp lỗi
+## Troubleshooting
 
-- **Dataset chỉ là vài dòng văn bản:** kiểm tra Git LFS đã được cài, sau đó chạy `git lfs pull` trong thư mục repository.
-- **Không tải được LFS:** kiểm tra kết nối, quyền truy cập và dung lượng/băng thông khả dụng trên GitHub.
-- **Thiếu thư viện Python:** kiểm tra đúng môi trường đang dùng và tệp requirements phù hợp. Chỉ cài Gradio chưa đủ cho mọi import của dự án.
-- **Notebook không tìm thấy ảnh:** chỉnh lại đường dẫn trong cell và kiểm tra thư mục `Humans/` đã tải đủ dữ liệu LFS.
-- **Cổng 7862 đang được dùng:** dừng bản preview trước đó bằng `Ctrl+C`, rồi khởi động lại.
-- **Thiếu model weights hoặc artifact:** đây là các tệp được giữ cục bộ, không nằm trong lần phát hành mã nguồn và dataset này.
+- **A dataset contains only a few lines of text:** confirm that Git LFS is installed, then run `git lfs pull` from the repository directory.
+- **LFS downloads fail:** check your connection, access permissions, and available GitHub LFS storage and bandwidth.
+- **Python reports a missing dependency:** check the active environment and the appropriate requirements file. Installing Gradio alone does not cover all project imports.
+- **The notebook cannot find an image:** update the cell's paths and confirm that the `Humans/` directory contains the downloaded LFS data.
+- **Port 7862 is already in use:** stop the previous preview with `Ctrl+C`, then start it again.
+- **Model weights or experiment artifacts are missing:** these files are kept locally and are not part of this source-and-dataset release.
 
-## Giới hạn hiện tại
+## Current limitations
 
-Nhãn dịch vụ là *weak supervision*: chúng giúp nghiên cứu cách biểu diễn và tạo văn bản, nhưng không phải nhãn sự thật được xác nhận độc lập.
+Provider labels are *weak supervision*. They support experiments with representations and text generation, but are not independently verified ground truth.
 
-Tập kiểm thử văn bản đã lưu có **702 bản ghi**, tương ứng **686 vector semantic khác nhau**. Checkpoint FLAN-T5 gốc chỉ tạo ra **5 văn bản khác nhau** trên tập này, cho thấy hiện tượng lặp đầu ra. Template có thể bám sát khái niệm được chọn hơn, nhưng điều đó không chứng minh khả năng suy đoán đặc điểm con người từ ngoại hình.
+The saved text test set contains **702 records** representing **686 distinct semantic vectors**. The original FLAN-T5 checkpoint produced only **5 distinct texts** on that set, indicating repetitive output. Templates may follow selected concepts more closely, but this does not establish that personal traits can be inferred from appearance.
 
-Các kết quả thử nghiệm cũ không phải cam kết về chất lượng hay mức độ sẵn sàng triển khai.
+Historical experiment results are not guarantees of quality or deployment readiness.
 
-## Cấu trúc dự án
+## Project layout
 
 ```text
 Physiognomy/
-├── Humans/                                  # Bộ ảnh, lưu bằng Git LFS
-├── Physiognomy_VSCode_Colab_Features.ipynb    # Notebook xử lý dữ liệu
-├── faces_full_features_clean.csv            # Đặc trưng đã làm sạch
-├── labels_enriched.jsonl                    # Nhãn từ dịch vụ
-├── semantic_training_dataset.csv            # Dataset semantic đã ghép
-├── training_*.jsonl                         # Dataset văn bản
-├── requirements*.txt                        # Phụ thuộc theo mục đích
+├── Humans/                                  # Image corpus, stored with Git LFS
+├── Physiognomy_VSCode_Colab_Features.ipynb    # Data-processing notebook
+├── faces_full_features_clean.csv            # Cleaned features
+├── labels_enriched.jsonl                    # Provider labels
+├── semantic_training_dataset.csv            # Joined semantic dataset
+├── training_*.jsonl                         # Text datasets
+├── requirements*.txt                        # Dependencies by purpose
 └── Source/
-    ├── assets/                             # CSS, JavaScript, sơ đồ vector
-    ├── demo_gradio.py                       # Giao diện đọc báo cáo
-    ├── physiognomy.py                       # Xử lý ảnh và hình học
-    ├── build_*.py                          # Chuẩn bị dữ liệu
-    ├── test_*.py                           # Kiểm thử
+    ├── assets/                             # CSS, JavaScript, vector illustration
+    ├── demo_gradio.py                       # Report interface
+    ├── physiognomy.py                       # Image processing and geometry
+    ├── build_*.py                          # Dataset preparation
+    ├── test_*.py                           # Tests
     └── experiments/ui_reading_20261014/
-        └── mock_preview.py                 # Preview giao diện giả lập
+        └── mock_preview.py                 # Mock interface preview
 ```
 
-README là tài liệu Markdown duy nhất được đăng lên repository. Tài liệu nội bộ, log, backup, cache, ảnh kiểm thử cá nhân, model weights, output chạy thử và cấu hình Docker phụ thuộc tài nguyên cục bộ được giữ ngoài Git.
+README is the only Markdown document published in the repository. Internal documentation, logs, backups, caches, personal test images, model weights, trial outputs, and Docker configuration that depends on local resources are kept outside Git.
 
-## Công cụ sử dụng
+## Built with
 
-- **NumPy, pandas và scikit-learn** cho xử lý bảng dữ liệu và các thử nghiệm semantic.
-- **InsightFace, facexlib và OpenCV** cho xử lý ảnh và đặc trưng khuôn mặt.
-- **PyTorch, Transformers và FLAN-T5** cho các thử nghiệm sinh văn bản.
-- **Gradio** cho giao diện, **Playwright** cho kiểm thử trình duyệt.
-- **Git LFS** cho ảnh và dataset lớn.
+- **NumPy, pandas, and scikit-learn** for tabular processing and semantic experiments.
+- **InsightFace, facexlib, and OpenCV** for image processing and facial geometry.
+- **PyTorch, Transformers, and FLAN-T5** for text-generation experiments.
+- **Gradio** for the interface and **Playwright** for browser tests.
+- **Git LFS** for images and large datasets.
 
-Thư viện, model và ảnh có điều kiện sử dụng riêng. Repository chưa kèm một giấy phép dữ liệu được xác nhận; hãy kiểm tra quyền sử dụng trước khi tái phân phối hoặc dùng lại các tài nguyên này.
+Libraries, models, and images have their own usage terms. The repository does not include a verified dataset license; check the applicable permissions before redistributing or reusing these resources.
